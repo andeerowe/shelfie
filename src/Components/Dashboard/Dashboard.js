@@ -9,9 +9,10 @@ export default class Dashboard extends Component{
         this.state = {}
     }
 
-    deleteProduct = () => {
-        axios.delete('/api/product/${id}')
-        .then()
+    deleteProduct = (id) => {
+        console.log('fired')
+        axios.delete(`/api/product/${id}`)
+        .then(this.props.getInventory())
         .catch(err => console.log(err))
     }
 
@@ -23,6 +24,7 @@ export default class Dashboard extends Component{
                     return <Product
                                 key={i}
                                 inventoryItem={e}
+                                deleteProduct={this.deleteProduct}
                             />
                 })}
             </div>

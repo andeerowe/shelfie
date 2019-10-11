@@ -31,11 +31,15 @@ class App extends Component{
   render(){
     // console.log(this.state.inventoryList)
     return (
-      <div className="App">
-        <Dashboard getInventory={this.getInventory} inventoryList={this.state.inventoryList}/>
-        <Form getInventory={this.getInventory}/>
-        <Header/>
-      </div>
+      <div>
+        <Header />
+        <div className="App">
+      
+      <Dashboard getInventory={this.getInventory} inventoryList={this.state.inventoryList}/>
+      <Form getInventory={this.getInventory}/>
+      
+    </div>
+    </div>
     )
   }
 }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './header.css'
 
 export default class Header extends Component{
     constructor(){
@@ -9,7 +10,7 @@ export default class Header extends Component{
 
     render (){
         return(
-            <div>
+            <div className="header">
                 
             </div>
         )

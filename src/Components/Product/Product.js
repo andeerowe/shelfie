@@ -18,6 +18,7 @@ export default class Product extends Component{
                 <h3>{name}</h3>
                 <h3>${price}</h3>
                 </div>
+                <button onClick={() => this.props.deleteProduct(this.props.inventoryItem.id)}>Delete</button>
 
             </div>
         )
