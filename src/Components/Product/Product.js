@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import "./product.css"
 
 export default class Product extends Component{
     constructor(){
@@ -11,7 +12,7 @@ export default class Product extends Component{
         // console.log(this.props.inventoryItem)
         let {name,price,img} = this.props.inventoryItem
         return(
-            <div>
+            <div className="product-container">
                 <h1>{name}</h1>
                 <h3>{price}</h3>
                 <img src={img} alt="item" />
