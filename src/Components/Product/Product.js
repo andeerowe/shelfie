@@ -13,9 +13,11 @@ export default class Product extends Component{
         let {name,price,img} = this.props.inventoryItem
         return(
             <div className="product-container">
-                <h1>{name}</h1>
-                <h3>{price}</h3>
-                <img src={img} alt="item" />
+                <img id="product-img" src={img} alt="item" />
+                <div className="product-info">
+                <h3>{name}</h3>
+                <h3>${price}</h3>
+                </div>
 
             </div>
         )

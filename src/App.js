@@ -32,7 +32,7 @@ class App extends Component{
     // console.log(this.state.inventoryList)
     return (
       <div className="App">
-        <Dashboard inventoryList={this.state.inventoryList}/>
+        <Dashboard getInventory={this.getInventory} inventoryList={this.state.inventoryList}/>
         <Form getInventory={this.getInventory}/>
         <Header/>
       </div>

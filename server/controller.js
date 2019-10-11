@@ -10,5 +10,15 @@ module.exports = {
        let products = await req.app.get('db').create_product([name, img, price])
        res.status(200).send(products)
         
+    },
+
+    delete: (req,res) => {
+        const {id} = req.params
+        req.app.get('db').delete_product({id})
+        .then(product => {
+            res.sendStatus(200)
+        })
+        .catch(err => console.log(err))
+        
     }
 }

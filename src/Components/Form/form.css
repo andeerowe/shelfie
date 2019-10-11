@@ -1,0 +1,21 @@
+.form-holder {
+    background-color: #3AD886;
+    height: 400px;
+    width: 400px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+#preview-img{
+    height:200px;
+    width:300px;
+    background-color: white;
+    border: solid black .5px;
+}
+
+.form {
+    width: 370px;
+}
