@@ -1,5 +1,5 @@
 DELETE FROM scproducts
-WHERE id = ${id}
+WHERE id = $1
 
 -- SELECT *
 -- FROM scproducts

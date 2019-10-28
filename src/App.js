@@ -11,12 +11,14 @@ class App extends Component{
     super()
 
     this.state= {
-      inventoryList:[]
+      inventoryList:[],
+      currentProductId: 0
     }
   }
   componentDidMount(){
     this.getInventory()
   }
+
   getInventory = () => {
     axios.get('/api/inventory')
     .then(res => {
@@ -24,10 +26,17 @@ class App extends Component{
       this.setState({
         inventoryList: res.data
       })
-      // console.log(this.state.inventoryList)
+      console.log(this.state.inventoryList)
   })
     .catch(err => console.log('Try Again :(', err))
   }
+
+  selectForEditing = (product) => {
+    this.setState({
+      currentProductId: product
+    })
+  }
+
   render(){
     // console.log(this.state.inventoryList)
     return (
@@ -35,8 +44,12 @@ class App extends Component{
         <Header />
         <div className="App">
       
-      <Dashboard getInventory={this.getInventory} inventoryList={this.state.inventoryList}/>
-      <Form getInventory={this.getInventory}/>
+      <Dashboard 
+        getInventory={this.getInventory} 
+        inventoryList={this.state.inventoryList}
+        selectForEditing={this.selectForEditing}
+        />
+      <Form current={this.state.currentProductId} getInventory={this.getInventory}/>
       
     </div>
     </div>

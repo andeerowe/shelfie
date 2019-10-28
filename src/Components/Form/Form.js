@@ -9,8 +9,22 @@ export default class Form extends Component{
         this.state = {
             img: '',
             productName: '',
-            productPrice: 0
+            productPrice: 0,
+            currentId: 0,
+            editing: false
         }
+    }
+
+    componentDidUpdate = (oldPropsObj) => {
+        console.log(oldPropsObj, this.props)
+        if (oldPropsObj !== this.props){
+            this.setState({
+                currentId: this.props.current,
+                editing: true
+            })
+
+        }
+
     }
 
     handleImgChange = e => {
@@ -52,12 +66,39 @@ export default class Form extends Component{
             })
     }
 
+    saveChanges = (id) => {
+        axios.put(`/api/product/${id}`, this.state)
+        .then(res => {
+            this.setState({
+                editing: false
+            })
+            this.props.getInventory()
+        })
+    }
+
     render (){
-        console.log(this.state)
-        return(
+        console.log(this.props)
+        if (!this.state.editing){
+            return(
+                <div className="form-holder">
+                
+                    <img id="preview-img" src={this.state.img} alt="hello"/>
+                    <label>Image URL:</label>
+                    <input className="form" placeholder={this.state.img} onChange={e => this.handleImgChange(e)}></input>
+                    <label>Product Name:</label>
+                    <input className="form" placeholder={this.state.productName} onChange={e => this.handleNameChange(e)}></input>
+                    <label>Price:</label>
+                    <input className="form" placeholder={this.state.productPrice} onChange={e => this.handlePriceChange(e)}></input>
+                    <button onClick={() => this.cancelButton()}>Cancel</button>
+                    
+                    <button id="addToInventory" onClick={() => this.addToInventory()}>Add to Inventory</button>
+    
+                </div>
+            )
+        } else { return(
             <div className="form-holder">
             
-                <img id="preview-img" src={this.state.img}/>
+                <img id="preview-img" src={this.state.img} alt="hello"/>
                 <label>Image URL:</label>
                 <input className="form" placeholder={this.state.img} onChange={e => this.handleImgChange(e)}></input>
                 <label>Product Name:</label>
@@ -65,8 +106,11 @@ export default class Form extends Component{
                 <label>Price:</label>
                 <input className="form" placeholder={this.state.productPrice} onChange={e => this.handlePriceChange(e)}></input>
                 <button onClick={() => this.cancelButton()}>Cancel</button>
-                <button onClick={() => this.addToInventory()}>Add to Inventory</button>
+                
+                <button id="addToInventory" onClick={() => this.saveChanges(this.state.currentId)}>Save Changes</button>
+
             </div>
-        )
+                    )
+            }
     }
 }

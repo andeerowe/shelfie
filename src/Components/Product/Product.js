@@ -9,8 +9,8 @@ export default class Product extends Component{
     }
 
     render (){
-        // console.log(this.props.inventoryItem)
-        let {name,price,img} = this.props.inventoryItem
+        console.log(this.props.inventoryItem)
+        let {name,price,img,id} = this.props.inventoryItem
         return(
             <div className="product-container">
                 <img id="product-img" src={img} alt="item" />
@@ -19,6 +19,7 @@ export default class Product extends Component{
                 <h3>${price}</h3>
                 </div>
                 <button onClick={() => this.props.deleteProduct(this.props.inventoryItem.id)}>Delete</button>
+                <button onClick={() => this.props.selectForEditing(id)}>Edit</button>
 
             </div>
         )

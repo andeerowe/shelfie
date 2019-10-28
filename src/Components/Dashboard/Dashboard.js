@@ -17,6 +17,7 @@ export default class Dashboard extends Component{
     }
 
     render (){
+        console.log('hi')
         return(
             <div>
                 
@@ -25,6 +26,7 @@ export default class Dashboard extends Component{
                                 key={i}
                                 inventoryItem={e}
                                 deleteProduct={this.deleteProduct}
+                                selectForEditing={this.props.selectForEditing}
                             />
                 })}
             </div>
